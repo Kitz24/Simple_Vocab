@@ -1,4 +1,4 @@
-# simplevocab
+# Simple Vocab
 
 Store and Revise newly discovered English words and Improve your Vocabulary.
 
