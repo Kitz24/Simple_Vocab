@@ -12,5 +12,5 @@ This is my first Flutter project and these are some links to study materials:
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 - [Beginner Flutter tutorial NetNinja](https://youtube.com/playlist?list=PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ)
 
-Flutter Documentation :
+Flutter Documentation:
 [online flutter documentation](https://docs.flutter.dev/)
