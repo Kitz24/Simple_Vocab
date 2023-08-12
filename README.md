@@ -2,15 +2,15 @@
 
 Store and Revise newly discovered English words and Improve your Vocabulary.
 
-## Getting Started
+## App in Construction
 
-This project is a starting point for a Flutter application.
+This project is a starting point for my Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+This is my first Flutter project and these are some links to study materials:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [Beginner Flutter tutorial NetNinja](https://youtube.com/playlist?list=PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Flutter Documentation:
+[online flutter documentation](https://docs.flutter.dev/)
