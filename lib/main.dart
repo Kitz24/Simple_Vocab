@@ -14,7 +14,10 @@ class Mainpage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: Text("Simple Vocab"),
+        title: Text("Simple Vocab", style: TextStyle(
+          fontFamily: "Inter",
+          letterSpacing: 2
+        ),),
         backgroundColor: Colors.grey[850],
       ),
 
@@ -22,13 +25,14 @@ class Mainpage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Placeholder(fallbackHeight: 200,),
+          SizedBox(height: 50),
           Card(
             clipBehavior: Clip.hardEdge,
             child: InkWell(
               splashColor: Colors.blue[100],
               onTap: () {},
               child: Container(
-                color: Colors.grey[900],
+
                 height: 50,
                 child:Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +42,7 @@ class Mainpage extends StatelessWidget {
                       "Add Word",
                       style: TextStyle(
                         letterSpacing: 4,
-                        fontFamily: "Pacifico",
+                        fontFamily: "Inter",
                         color: Colors.white
                       ),
                     )
@@ -46,7 +50,59 @@ class Mainpage extends StatelessWidget {
                 )
           )
             )
-          )
+          ),
+          SizedBox(height: 10,),
+          Card(
+              clipBehavior: Clip.hardEdge,
+              child: InkWell(
+                  splashColor: Colors.blue[100],
+                  onTap: () {},
+                  child: Container(
+
+                      height: 50,
+                      child:Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.menu_book_rounded,color: Colors.white),
+                          Text(
+                            "View Vocabulary",
+                            style: TextStyle(
+                                letterSpacing: 4,
+                                fontFamily: "Inter",
+                                color: Colors.white
+                            ),
+                          )
+                        ],
+                      )
+                  )
+              )
+          ),
+          SizedBox(height: 10,),
+          Card(
+              clipBehavior: Clip.hardEdge,
+              child: InkWell(
+                  splashColor: Colors.blue[100],
+                  onTap: () {},
+                  child: Container(
+
+                      height: 50,
+                      child:Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.question_mark,color: Colors.white),
+                          Text(
+                            "Random Word",
+                            style: TextStyle(
+                                letterSpacing: 4,
+                                fontFamily: "Inter",
+                                color: Colors.white
+                            ),
+                          )
+                        ],
+                      )
+                  )
+              )
+          ),
         ],
       )
     );
