@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simplevocab/newWord.dart';
+import 'package:simplevocab/randomWord.dart';
+import 'package:simplevocab/viewVocab.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -30,7 +33,13 @@ class Mainpage extends StatelessWidget {
             clipBehavior: Clip.hardEdge,
             child: InkWell(
               splashColor: Colors.blue[100],
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => newWordAdd()
+                    )
+                );
+              },
               child: Container(
 
                 height: 50,
@@ -56,7 +65,13 @@ class Mainpage extends StatelessWidget {
               clipBehavior: Clip.hardEdge,
               child: InkWell(
                   splashColor: Colors.blue[100],
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => viewFullVocab()
+                        )
+                    );
+                  },
                   child: Container(
 
                       height: 50,
@@ -82,7 +97,13 @@ class Mainpage extends StatelessWidget {
               clipBehavior: Clip.hardEdge,
               child: InkWell(
                   splashColor: Colors.blue[100],
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => randomWord()
+                        )
+                    );
+                  },
                   child: Container(
 
                       height: 50,
