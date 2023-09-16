@@ -39,6 +39,7 @@ dependencies:
   hive:
   hive_flutter:
   keyboard_actions:
+  fluttertoast:
 
 dev_dependencies:
   flutter_test:
