@@ -6,7 +6,6 @@ import 'package:simplevocab/viewVocab.dart';
 void main() {
   runApp(MaterialApp(
     home: Mainpage(),
-    theme: ThemeData.dark(),
   ));
 }
 class Mainpage extends StatelessWidget {
