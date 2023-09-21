@@ -13,8 +13,15 @@ class randomWord extends StatelessWidget{
 
         body: ListView(
           children: [
-            Text("sad")
-          ],
+            Center(
+                child: Container(
+                  padding: EdgeInsets.all(40),
+                    child: Text("Placeholder", style: TextStyle(fontSize: 30),)
+
+                ),
+            ),
+            Text("data")
+                      ],
         )
 
     );
