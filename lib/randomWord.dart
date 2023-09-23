@@ -11,17 +11,18 @@ class randomWord extends StatelessWidget{
           backgroundColor: Colors.grey[850],
         ),
 
-        body: ListView(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-                child: Container(
+              child: Container(
                   padding: EdgeInsets.all(40),
-                    child: Text("Placeholder", style: TextStyle(fontSize: 30),)
+                  child: Text("Placeholder", style: TextStyle(fontSize: 30),)
 
-                ),
+              ),
             ),
-            Text("data")
-                      ],
+            Text("data", style: TextStyle(fontSize: 20),)
+          ],
         )
 
     );
