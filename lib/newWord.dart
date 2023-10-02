@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class newWordAdd extends StatefulWidget {
-  const newWordAdd({super.key});
+  final box;
+  const newWordAdd({super.key, this.box});
 
   @override
   State<newWordAdd> createState() => _newWordAddState();
@@ -12,6 +15,16 @@ class _newWordAddState extends State<newWordAdd> {
   final _controller = TextEditingController();
   final _controller2 = TextEditingController();
   final text = "";
+
+  write() async{
+    await widget.box.put('newkey','hallothere');
+    print("heyy done");
+  }
+
+  Read()
+  {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,11 +92,15 @@ class _newWordAddState extends State<newWordAdd> {
             ),
             SizedBox(height:10),
 
+            //LOGIC FOR ADDING BUTTON
             Card(
                 clipBehavior: Clip.hardEdge,
                 child: InkWell(
                     splashColor: Colors.blue[100],
-                    onTap: () {},
+                    onTap: () {
+                      write();
+                      Read();
+                    },
                     child: Container(
                         height: 50,
                         child:Row(
@@ -135,6 +152,9 @@ class _newWordAddState extends State<newWordAdd> {
                     )
                 )
             ),
+            Text(
+             widget.box.get('newkey')==null? "no data found" : widget.box.get('newkey')
+            )
           ],
         )
 

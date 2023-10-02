@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:simplevocab/newWord.dart';
 import 'package:simplevocab/randomWord.dart';
 import 'package:simplevocab/viewVocab.dart';
 
-void main() {
+void main() async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('box');
+
   runApp(MaterialApp(
     home: Mainpage(),
     theme: ThemeData.dark(),
@@ -14,6 +21,7 @@ class Mainpage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final boxu = Hive.box('box');
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
@@ -36,14 +44,14 @@ class Mainpage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(
-                        builder: (context) => newWordAdd()
+                        builder: (context) => newWordAdd(box: boxu)
                     )
                 );
               },
               child: Container(
 
                 height: 50,
-                child:Row(
+                child:const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.mode_edit_sharp,color: Colors.white),
