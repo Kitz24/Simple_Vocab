@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class viewFullVocab extends StatefulWidget{
   @override
@@ -7,6 +9,13 @@ class viewFullVocab extends StatefulWidget{
 }
 
 class _viewFullVocabState extends State<viewFullVocab> {
+  final box = Hive.box('box');
+
+  void printing() async
+  {
+    print(box.keys);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +36,7 @@ class _viewFullVocabState extends State<viewFullVocab> {
                 title: Text("Word ${index+1}"),
                 trailing: Text("Meaning", style: TextStyle(color: Colors.grey),),
                 onTap: () {
+                  printing();
                   Fluttertoast.showToast(msg: "Index $index",toastLength: Toast.LENGTH_SHORT,
                       gravity: ToastGravity.CENTER,
                       timeInSecForIosWeb: 1,

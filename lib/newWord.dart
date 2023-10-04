@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -16,13 +17,34 @@ class _newWordAddState extends State<newWordAdd> {
   final _controller2 = TextEditingController();
   final text = "";
 
-  write() async{
-    await widget.box.put('newkey','hallothere');
-    print("heyy done");
+  write(key,value) async{
+    if(key.isEmpty==false && value.isEmpty==false)
+    {
+      await widget.box.put(key,value);
+      print("pushed: "+key+"val:"+value);
+      Read();
+      Fluttertoast.showToast(msg: "Wrote: $key",toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey[700],
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+    else
+    {
+      Fluttertoast.showToast(msg: "Please Enter Word & Meaning",toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey[700],
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
   }
 
   Read()
   {
+    _controller.clear();
+    _controller2.clear();
     setState(() {});
   }
 
@@ -98,8 +120,7 @@ class _newWordAddState extends State<newWordAdd> {
                 child: InkWell(
                     splashColor: Colors.blue[100],
                     onTap: () {
-                      write();
-                      Read();
+                      write(_controller.text,_controller2.text);
                     },
                     child: Container(
                         height: 50,
@@ -152,9 +173,8 @@ class _newWordAddState extends State<newWordAdd> {
                     )
                 )
             ),
-            Text(
-             widget.box.get('newkey')==null? "no data found" : widget.box.get('newkey')
-            )
+
+
           ],
         )
 
