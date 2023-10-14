@@ -38,7 +38,7 @@ dependencies:
   path_provider: ^2.0.11
   hive:
   hive_flutter:
-  keyboard_actions:
+  #keyboard_actions:
   fluttertoast:
 
 dev_dependencies:
