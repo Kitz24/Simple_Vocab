@@ -28,7 +28,7 @@ class _viewFullVocabState extends State<viewFullVocab> {
 
         // TODO attach database
         body: ListView.builder(
-            itemCount: 20,
+            itemCount: box.length,
             itemBuilder: (context, index) {
               return ListTile(
                 contentPadding: EdgeInsets.all(4),
