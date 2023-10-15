@@ -6,7 +6,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class newWordAdd extends StatefulWidget {
   final box;
-  const newWordAdd({super.key, this.box});
+  final wordReceivedForEdit;
+  const newWordAdd({super.key, this.box, this.wordReceivedForEdit});
 
   @override
   State<newWordAdd> createState() => _newWordAddState();
@@ -21,7 +22,6 @@ class _newWordAddState extends State<newWordAdd> {
     if(key.isEmpty==false && value.isEmpty==false)
     {
       await widget.box.put(key,value);
-      print("pushed: "+key+"val:"+value);
       Read();
       Fluttertoast.showToast(msg: "Wrote: $key",toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
@@ -47,6 +47,7 @@ class _newWordAddState extends State<newWordAdd> {
     _controller2.clear();
     setState(() {});
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +173,7 @@ class _newWordAddState extends State<newWordAdd> {
                         )
                     )
                 )
-            ),
+            )
 
 
           ],
