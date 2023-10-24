@@ -35,8 +35,9 @@ class Mainpage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Placeholder(fallbackHeight: 200,),
-          SizedBox(height: 50),
+          Center(
+            child: Image.asset('assets/simple_vocab.png'),
+          ),
           Card(
             clipBehavior: Clip.hardEdge,
             child: InkWell(

@@ -6,8 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class newWordAdd extends StatefulWidget {
   final box;
-  final wordReceivedForEdit;
-  const newWordAdd({super.key, this.box, this.wordReceivedForEdit});
+  const newWordAdd({super.key, this.box});
 
   @override
   State<newWordAdd> createState() => _newWordAddState();
