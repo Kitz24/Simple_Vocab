@@ -21,7 +21,7 @@ class _newWordAddState extends State<newWordAdd> {
   KeyboardActionsConfig _buildConfig(BuildContext context) {
     return KeyboardActionsConfig(
       keyboardActionsPlatform: KeyboardActionsPlatform.ALL,
-      keyboardBarColor: Colors.grey[200],
+      keyboardBarColor: Colors.grey[800],
       nextFocus: true,
       actions: [
         KeyboardActionsItem(focusNode: _nodeText2, toolbarButtons: [
@@ -32,7 +32,7 @@ class _newWordAddState extends State<newWordAdd> {
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   "CLOSE",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             );
@@ -46,7 +46,7 @@ class _newWordAddState extends State<newWordAdd> {
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   "CLOSE",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             );
