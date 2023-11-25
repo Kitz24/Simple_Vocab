@@ -17,4 +17,4 @@ Flutter Documentation:
 
 ### TO-DO
 
-- Change KeyboardActions Bar color
+- Notification for daily word
