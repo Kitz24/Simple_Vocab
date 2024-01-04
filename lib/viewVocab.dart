@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:simplevocab/ad_helper.dart';
 
 class viewFullVocab extends StatefulWidget{
   @override
@@ -8,7 +10,21 @@ class viewFullVocab extends StatefulWidget{
 
 class _viewFullVocabState extends State<viewFullVocab> {
   final box = Hive.box('box');
+  BannerAd? _banner;
 
+  @override
+  void initState(){
+    super.initState();
+    _createBannerAd();
+  }
+  void _createBannerAd(){
+    _banner = BannerAd(
+        size: AdSize.fullBanner,
+        adUnitId: AdMobService.bannerAdUnitId,
+        listener: AdMobService.bannerListener,
+        request: const AdRequest()
+    )..load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +85,13 @@ class _viewFullVocabState extends State<viewFullVocab> {
             );
           },  //builder
 
+        ),
+        bottomNavigationBar: _banner==null
+            ? Container()
+            : Container(
+          //margin: const EdgeInsets.only(bottom: 12),
+          height: 52,
+          child: AdWidget(ad: _banner!),
         )
 
     );

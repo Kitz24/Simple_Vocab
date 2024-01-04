@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:simplevocab/searchWeb.dart';
+import 'package:simplevocab/ad_helper.dart';
 
 class newWordAdd extends StatefulWidget {
   final box;
@@ -17,6 +19,7 @@ class _newWordAddState extends State<newWordAdd> {
   final text = "";
   final FocusNode _nodeText2 = FocusNode();
   final FocusNode _nodeText1 = FocusNode();
+  InterstitialAd? _interstitialAd;
 
   KeyboardActionsConfig _buildConfig(BuildContext context) {
     return KeyboardActionsConfig(
@@ -110,6 +113,38 @@ class _newWordAddState extends State<newWordAdd> {
   }
 
   @override
+  void initState(){
+    super.initState();
+    _createInterstitialAd();
+  }
+
+  void _createInterstitialAd() {
+    InterstitialAd.load(
+        adUnitId: AdMobService.interstitialAdUnitId,
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (ad) => _interstitialAd = ad,
+          onAdFailedToLoad: (LoadAdError error) => _interstitialAd = null,)
+    );
+  }
+  void _showInterstitialAd() {
+    if (_interstitialAd != null) {
+      _interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+          onAdDismissedFullScreenContent: (ad) {
+            ad.dispose();
+            _createInterstitialAd();
+          },
+          onAdFailedToShowFullScreenContent: (ad,error) {
+            ad.dispose();
+            _createInterstitialAd();
+          }
+      );
+      _interstitialAd!.show();
+      _interstitialAd = null;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -178,7 +213,7 @@ class _newWordAddState extends State<newWordAdd> {
                         ),
                         hintText: "Enter Word Meaning",
                     ),
-                    maxLines: 10,
+                    maxLines: 9,
                   ),
                   padding: EdgeInsets.all(20),
                 ),
@@ -191,6 +226,7 @@ class _newWordAddState extends State<newWordAdd> {
                         splashColor: Colors.blue[100],
                         onTap: () {
                           write(_controller.text,_controller2.text);
+                          _showInterstitialAd();
                         },
                         child: Container(
                             height: 50,

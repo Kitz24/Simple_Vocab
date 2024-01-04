@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:http/http.dart' as http;
 import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:simplevocab/ad_helper.dart';
 
 class searchWeb extends StatefulWidget {
   final wordToSearch;
@@ -16,6 +18,7 @@ class searchWeb extends StatefulWidget {
 class _searchWebState extends State<searchWeb> {
   final controller = TextEditingController();
   final FocusNode _nodeText2 = FocusNode();
+  InterstitialAd? _interstitialAd;
 
   KeyboardActionsConfig _buildConfig(BuildContext context) {
     return KeyboardActionsConfig(
@@ -56,7 +59,7 @@ class _searchWebState extends State<searchWeb> {
   void initState()
   {
     super.initState();
-     WidgetsBinding.instance!.addPostFrameCallback((_) async {
+     WidgetsBinding.instance.addPostFrameCallback((_) async {
        showDialog(
          barrierDismissible: false,
          builder: (ctx) {
@@ -71,6 +74,7 @@ class _searchWebState extends State<searchWeb> {
        await Loading();
        Navigator.of(context).pop();
      });
+    _createInterstitialAd();
     //fetchData();
 
 
@@ -88,7 +92,32 @@ class _searchWebState extends State<searchWeb> {
           backgroundColor: Colors.grey[700],
           textColor: Colors.white,
           fontSize: 16.0);
-      Navigator.pop(context);
+    }
+  }
+
+  void _createInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: AdMobService.interstitialAdUnitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (ad) => _interstitialAd = ad,
+          onAdFailedToLoad: (LoadAdError error) => _interstitialAd = null,)
+    );
+  }
+  void _showInterstitialAd() {
+    if (_interstitialAd != null) {
+      _interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+        onAdDismissedFullScreenContent: (ad) {
+          ad.dispose();
+          _createInterstitialAd();
+        },
+        onAdFailedToShowFullScreenContent: (ad,error) {
+          ad.dispose();
+          _createInterstitialAd();
+        }
+      );
+      _interstitialAd!.show();
+      _interstitialAd = null;
     }
   }
 
@@ -154,6 +183,7 @@ class _searchWebState extends State<searchWeb> {
                         splashColor: Colors.blue[100],
                         onTap: () {
                           write(widget.wordToSearch,controller.text);
+                          _showInterstitialAd();
                         },
                         child: Container(
                             height: 50,

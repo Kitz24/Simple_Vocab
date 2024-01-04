@@ -1,16 +1,20 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:simplevocab/newWord.dart';
 import 'package:simplevocab/randomWord.dart';
 import 'package:simplevocab/viewVocab.dart';
 
-void main() async{
 
+
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   await Hive.initFlutter();
   await Hive.openBox('box');
 
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: Mainpage(),
     theme: ThemeData.dark(),
   ));
@@ -34,6 +38,7 @@ class Mainpage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+
           Center(
             child: Image.asset('assets/simple_vocab.png'),
           ),
